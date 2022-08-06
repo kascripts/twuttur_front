@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#f4cdd4",
+    "titleBar.activeBackground": "#f4cdd4",
+    "titleBar.inactiveBackground": "#f4cdd4",
+    "statusBar.foreground": "#000",
+    "titleBar.inactiveForeground": "#000",
+    "titleBar.activeForeground": "#000",
+  },
+  "window.title": "TW1TT3R_FLASK_FRONTEND"
+}
