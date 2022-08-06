@@ -20,6 +20,24 @@
   "devDependencies": {
     "react-scripts": "^5.0.1"
   },
+
+  "eslintConfig": { 
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {
+            "no-unused-vars": "off" 
+        }
+    },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
