@@ -1,19 +1,32 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
 
 // import GoogleLogin from 'react-google-login'
 // import { FcGoogle } from 'react-icons/fc'
 import { baseUrl } from '../../config'
 
-export default function Login() {
+function Status() {
+
+  const [status, setStatus] = React.useState([])
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get('/api/status')
+      setStatus(data)
+    }
+    getData()
+  }, [])
+
+
+
 
   const navigate = useNavigate()
 
-
   const [formData, setFormData] = useState({
-    password: "",
-    email: "",
+    username: "",
+    text: "",
   })
 
   function handleChange(event) {
@@ -28,7 +41,7 @@ export default function Login() {
     event.preventDefault()
 
     try {
-      const { data } = await axios.post(`${baseUrl}/login`, formData)
+      const { data } = await axios.post(`${baseUrl}/status`, formData)
       localStorage.setItem('token', data.token)
       navigate('/status')
     } catch (err) {
@@ -42,9 +55,9 @@ export default function Login() {
           <input
             className="column is-5"
             type="text"
-            name={'email'}
-            placeholder="E-mail"
-            value={formData.email}
+            name={'username'}
+            placeholder="Username"
+            value={formData.username}
             onChange={handleChange}
           />
         </div>
@@ -63,14 +76,36 @@ export default function Login() {
           />
         </div>
       </div>
-      <button className="button is-small is-danger has-text-weight-bold ">Login</button>
     </form>
+    <section>
+      <div class="pl-16">
+          <p class="text-base width-auto font-medium text-white flex-shrink">
+            {status.map(status = <p key={status.id}>{status.text}</p> )}
+          </p>
+    
+      </div>
+    </section>
   </div>
 
 
+  {/* <div className="my-google mt-2">
+        <GoogleLogin 
+          clientId = {`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
+          render = {(renderProps) => (
+            <button
+              type = "button"
+              className="p-2 has-text-weight-bold "
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              <FcGoogle className="google-button mr-2 "/> Sign in with Google
+            </button>
+            )}
+          />
+      </div> */}
 
 
 }
 
 
-
+export default Status
