@@ -50,6 +50,7 @@ function Status() {
       const { data } = await axios.post('/api/status', newTextData, {
         headers: { Authorization: `Bearer ${token}` },
       })
+      setStatus(data)
     } catch (err) {
       console.log(err.response.data)
     }
@@ -76,14 +77,11 @@ function Status() {
         
       </form>
       </div>
-      <h1 className="title">Tweet Index One</h1>
+      <h1 className="title"></h1>
       <div className="text-base width-auto font-medium text-white flex-shrink">
         {status.map(status => <div> <h5 key={status.id}>{status.user.username}</h5>
           <p className="tweetcontent">{status.text}</p></div>
         )}
-      </div>
-      <div className="text-base width-auto font-medium text-white flex-shrink">
-        {status.map(status => <h5 key={status.id}>{status.text}</h5>)}
       </div>
     </div>
 

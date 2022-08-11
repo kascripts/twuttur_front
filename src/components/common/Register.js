@@ -38,7 +38,7 @@ function Register() {
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      await axios.post(`${baseUrl}/login`, formData)
+      await axios.post(`${baseUrl}/register`, formData)
       updateButton(!button)
       navigate('/login')
     } catch (err) {    
