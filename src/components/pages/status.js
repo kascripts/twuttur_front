@@ -41,7 +41,7 @@ function Status() {
     const id = getUserId()
     const newTextData = {
       ...textData,
-      id
+      id,
     }
     console.log(newTextData)
 
@@ -71,9 +71,9 @@ function Status() {
   return (
     <div className="section">
       <div className="formWrapper">
-      <form onChange={handleChange} onSubmit={handleSubmit}>
-      <textarea className="input" name="text" />
-      <button type="submit">button</button>
+        <form onChange={handleChange} onSubmit={handleSubmit}>
+        <textarea className="input" name="text" />
+        <button type="submit">button</button>
         
       </form>
       </div>
