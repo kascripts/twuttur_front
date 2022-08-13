@@ -32,6 +32,7 @@ export default function Login() {
       localStorage.setItem('token', data.token)
       navigate('/status')
     } catch (err) {
+      console.log(err)
     }
   }
   return <div>
