@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { baseUrl } from '../../config'
 
 
 function Status() {
@@ -39,15 +40,16 @@ function Status() {
     event.preventDefault()
     
     const id = getUserId()
+    console.log(id)
     const newTextData = {
       ...textData,
-      id,
+      id: id,
     }
     console.log(newTextData)
 
 
     try {
-      const { data } = await axios.post('/api/status', newTextData, {
+      const { data } = await axios.post(`${baseUrl}/status`, newTextData, {
         headers: { Authorization: `Bearer ${token}` },
       })
       setStatus(data)
@@ -58,7 +60,7 @@ function Status() {
 
   React.useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get('/api/status')
+      const { data } = await axios.get(`${baseUrl}/status`)
       setStatus(data)
 
       // console.log(data[0].text)
@@ -72,14 +74,14 @@ function Status() {
     <div className="section">
       <div className="formWrapper">
         <form onChange={handleChange} onSubmit={handleSubmit}>
-        <textarea className="input" name="text" />
-        <button type="submit">button</button>
+          <textarea className="input" name="text" />
+          <button type="submit">button</button>
         
-      </form>
+        </form>
       </div>
       <h1 className="title"></h1>
       <div className="text-base width-auto font-medium text-white flex-shrink">
-        {status.map(status => <div> <h5 key={status.id}>{status.user.username}</h5>
+        {status.map(status => <div key={status.id}> <h5 >{status.user.username}</h5>
           <p className="tweetcontent">{status.text}</p></div>
         )}
       </div>

@@ -9,7 +9,7 @@ function Comments() {
 
   React.useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get('/api/status')
+      const { data } = await axios.get('${baseUrl}/status')
       setStatus(data)
 
       // console.log(data[0].text)
